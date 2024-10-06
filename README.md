@@ -1,4 +1,4 @@
-# Whats the Weather like cuh
+# Whats the weather like cuh
 Read Me:
 How to start server, 
 1. cd to appropriate file path
