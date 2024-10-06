@@ -1,4 +1,4 @@
-# Webdev-project
+# Whats the Weather like cuh
 Read Me:
 How to start server, 
 1. cd to appropriate file path
