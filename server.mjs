@@ -1,5 +1,7 @@
 import express from "express"; // Import the express module
 import axios from "axios"; // Import the axios module for making HTTP requests
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express(); // Create an instance of an Express application
 const port = 3000; // Define the port number the server will listen on
@@ -18,7 +20,7 @@ app.get('/', (req, res) => {
 // Route to handle form submission and fetch weather data
 app.post('/weather', async (req, res) => {
     const location = req.body.location; // Get the location from the form submission
-    const apiKey = '1faae782907f0b65e7862d658318c31e'; // Your OpenWeatherMap API key
+    const apiKey = process.env.API_KEY;
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=metric`; // URL to fetch the weather data
 
     try {
