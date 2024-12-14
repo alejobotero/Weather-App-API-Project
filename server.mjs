@@ -27,6 +27,9 @@ app.post('/weather', async (req, res) => {
         // Make a GET request to the OpenWeatherMap API
         const response = await axios.get(url);
         const forecast = response.data; // Extract the data from the response
+        if (!forecast || !forecast.city) {
+            throw new Error('City not found'); // Explicit error if city is missing
+        }
         const tomorrowForecast = forecast.list[8]; // Get the forecast for approximately 24 hours later
         const willRain = tomorrowForecast.weather.some(w => w.main.toLowerCase().includes('rain')); // Check if it will rain tomorrow
 
@@ -35,12 +38,19 @@ app.post('/weather', async (req, res) => {
             location: forecast.city.name,
             willRain: willRain,
             description: tomorrowForecast.weather[0].description,
-            temperature: tomorrowForecast.main.temp
+            temperature: tomorrowForecast.main.temp,
+            error: null
         });
     } catch (error) {
         console.error(error); // Log the error to the console
         // Render the error.ejs view with an error message
-        res.render('error', { message: 'Could not fetch weather data. Please try again.' });
+        res.render('result', { 
+            location: null, 
+            willRain: null, 
+            description: null, 
+            temperature: null, 
+            error: 'City not found. Please try again.' 
+        });
     }
 });
 
