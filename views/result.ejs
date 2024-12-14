@@ -5,10 +5,16 @@
   <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-  <h1>Weather Forecast for <%= location %></h1>
-  <p>Tomorrow's forecast: <%= description %></p>
-  <p>Temperature: <%= temperature %>°C</p>
-  <p><%= willRain ? 'It will rain tomorrow.' : 'No rain expected tomorrow.' %></p>
-  <a href="/">Check another location</a>
+  <% if (error) { %>
+    <h1>Error</h1>
+    <p><%= error %></p>
+    <a href="/">Try again</a>
+  <% } else { %>
+    <h1>Weather Forecast for <%= location %></h1>
+    <p>Tomorrow's forecast: <%= description %></p>
+    <p>Temperature: <%= temperature %>°C</p>
+    <p><%= willRain ? 'It will rain tomorrow.' : 'No rain expected tomorrow.' %></p>
+    <a href="/">Check another location</a>
+  <% } %>
 </body>
 </html>
