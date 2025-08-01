@@ -7,3 +7,5 @@ How to start server,
 
 Also make sure the node_modules folder is in the same directory. This is so express, axiom and ejs work.
 Used npm i to install ejs express and axios. 
+
+Link to site: https://weather-app-api-project.onrender.com/
